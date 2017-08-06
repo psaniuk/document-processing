@@ -32,5 +32,12 @@ namespace Motosoft.DocumentProcessing.UnitTests
             var wordEncoder = new WordEncoder();
             Assert.Equal("dEpMuJ", wordEncoder.Encode("jumped"));
         }
+
+        [Fact]
+        public void encode_ab_assume_result_equals_bA()
+        {
+            var wordEncoder = new WordEncoder();
+            Assert.Equal("bA", wordEncoder.Encode("ab"));
+        }
     }
 }

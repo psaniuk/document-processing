@@ -9,16 +9,23 @@ using Motosoft.DocumentProcessing.App.View;
 
 namespace Motosoft.DocumentProcessing.App
 {
+    // countIt.Count("These containers could be loaded onto a locomotive, container ship, or tractor trailer truck, and would consist of a maintenance car equipped with extra batteries, a robotic arm, and a computer system that would allow the vehicles to communicate with a drone. If needed, they could move to a new location to pick up a drone.");
+
     class Program
     {
         static void Main(string[] args)
         {
             try
             {
-                CountIt countIt = CreateDocProcessor();
-                countIt.Count("The big brown fox number 4 jumped over the lazy dog. THE BIG BROWN FOX JUMPED OVER THE LAZY DOG. The Big Brown Fox 123.");
-        
-               // countIt.Count("These containers could be loaded onto a locomotive, container ship, or tractor trailer truck, and would consist of a maintenance car equipped with extra batteries, a robotic arm, and a computer system that would allow the vehicles to communicate with a drone. If needed, they could move to a new location to pick up a drone.");
+                while (true)
+                {
+                    Console.WriteLine("Type you text:");
+
+                    string text = Console.ReadLine();
+                    CountIt countIt = CreateDocProcessor();
+                    countIt.Count(text);
+                    Console.WriteLine();
+                }
             }
             catch (DocumentCountException exception)
             {
