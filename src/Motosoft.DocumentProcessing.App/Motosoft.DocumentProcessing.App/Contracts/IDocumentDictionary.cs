@@ -2,9 +2,9 @@
 
 namespace Motosoft.DocumentProcessing.App.Contracts
 {
-    public interface ISymbolTable
+    public interface IDocumentDictionary
     {
-        int Count { get; }
+        int DistinctCount { get; }
         WordCounterPair[] GetAll();
         void Put(string word);
     }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Motosoft.DocumentProcessing.App.Contracts;
 
 namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
 {
-    public partial class TernarySearchTrie: ISymbolTable
+    public partial class TernarySearchTrie: IDocumentDictionary
     {
         private Node _root;
         
@@ -15,16 +14,16 @@ namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
                 throw new ArgumentNullException();
 
             _root = Put(_root, word, 0);
-            Count++;
         }
 
-        public int Count { get; private set; }
+        public int DistinctCount { get; private set; }
+
         public WordCounterPair[] GetAll()
         {
             if (_root == null)
                 return new WordCounterPair[0];
 
-            var buffer = new TrieBuffer(Count);
+            var buffer = new TrieBuffer(DistinctCount);
             GetAll(_root, buffer, new StringBuilder());
 
             return buffer.Items;
@@ -32,7 +31,7 @@ namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
 
         private void GetAll(Node node, TrieBuffer buffer, StringBuilder wordBuilder)
         {
-            if (buffer.Index == Count || node == null)
+            if (buffer.Index == DistinctCount || node == null)
                 return;
             
             if (node.Counter > 0)
@@ -42,17 +41,33 @@ namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
             }
 
             if (node.Left != null)
+            {
+                if (node == _root)
+                    wordBuilder.Clear();
+
                 GetAll(node.Left, buffer, new StringBuilder(wordBuilder.ToString()));
+            }
             
 
             if (node.Middle != null)
             {
                 wordBuilder.Append(node.Symbol);
                 GetAll(node.Middle, buffer, wordBuilder);
+
+               if (wordBuilder.Length > 0)
+                    wordBuilder.Remove(wordBuilder.Length - 1, 1);
             }
-            
+
             if (node.Right != null)
+            {
+                if (node == _root)
+                    wordBuilder.Clear();
+
                 GetAll(node.Right, buffer, new StringBuilder(wordBuilder.ToString()));
+            }
+
+            if (wordBuilder.Length > 0)
+                wordBuilder.Remove(wordBuilder.Length - 1, 1);
         }
 
         public int CountWord(string word)
@@ -97,6 +112,9 @@ namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
             }
             else
             {
+                if (node.Counter == 0)
+                    DistinctCount++;
+
                 node.Counter += 1;
             }
 

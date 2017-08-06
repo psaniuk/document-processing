@@ -43,8 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IWordFilter.cs" />
-    <Compile Include="Contracts\ISymbolTable.cs" />
+    <Compile Include="Contracts\IDocumentDictionary.cs" />
     <Compile Include="Contracts\IWordFormatter.cs" />
+    <Compile Include="Exceptions\DocumentCountException.cs" />
     <Compile Include="Services\CountIt.cs" />
     <Compile Include="Contracts\IDocumentReader.cs" />
     <Compile Include="Contracts\IView.cs" />

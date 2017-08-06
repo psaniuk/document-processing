@@ -63,7 +63,7 @@ namespace Motosoft.DocumentProcessing.UnitTests
             trie.Put("apple");
             trie.Put("peach");
 
-            Assert.Equal(3, trie.Count);
+            Assert.Equal(3, trie.DistinctCount);
         }
 
         [Fact]
@@ -101,8 +101,40 @@ namespace Motosoft.DocumentProcessing.UnitTests
             trie.Put("abc");
             trie.Put("aak");
 
-            WordCounterPair[] pairs = trie.GetAll().ToArray();
+            WordCounterPair[] pairs = trie.GetAll();
             Assert.Equal("aak", pairs[0].Word);
+        }
+
+        [Fact]
+        public void put_test_sentence_assume_sum_of_counter_equals_23()
+        {
+            var trie = new TernarySearchTrie();
+            trie.Put("the");
+            trie.Put("big");
+            trie.Put("brown");
+            trie.Put("fox");
+            trie.Put("number");
+            trie.Put("jumped");
+            trie.Put("over");
+            trie.Put("the");
+            trie.Put("lazy");
+            trie.Put("dog");
+            trie.Put("the");
+            trie.Put("big");
+            trie.Put("brown");
+            trie.Put("fox");
+            trie.Put("jumped");
+            trie.Put("over");
+            trie.Put("the");
+            trie.Put("lazy");
+            trie.Put("dog");
+            trie.Put("the");
+            trie.Put("big");
+            trie.Put("brown");
+            trie.Put("fox");
+
+            var pairs = trie.GetAll();
+            Assert.Equal(23, pairs.Sum(p => p.Counter));
         }
     }
 }
