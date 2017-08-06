@@ -19,7 +19,7 @@ namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
         }
 
         public int Count { get; private set; }
-        public IEnumerable<WordCounterPair> GetAll()
+        public WordCounterPair[] GetAll()
         {
             if (_root == null)
                 return new WordCounterPair[0];

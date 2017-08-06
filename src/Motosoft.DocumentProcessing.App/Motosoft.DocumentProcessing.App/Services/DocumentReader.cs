@@ -7,20 +7,26 @@ namespace Motosoft.DocumentProcessing.App.Services
     public class DocumentReader : IDocumentReader
     {
         private readonly char[] _separators;
-        private readonly string _document;
+        private string _document;
         private int _index;
 
-        public DocumentReader(string document) : this(document, new[] {' ', '.', ',', '!', '?', '-', '\'', '"'})
+        public DocumentReader() : this(new[] {' ', '.', ',', '!', '?', '-', '\'', '"'})
         {
             
         }
 
-        public DocumentReader(string document, char[] wordSeparators)
+        public DocumentReader(char[] wordSeparators)
         {
-            _document = document;
+            _document = string.Empty;
             _separators = wordSeparators;
         }
         
+        public void Load(string documentSource)
+        {
+            _document = documentSource;
+            _index = 0;
+        }
+
         public string ReadNextWord()
         {
             if (_document == null || _index > _document.Length - 1)

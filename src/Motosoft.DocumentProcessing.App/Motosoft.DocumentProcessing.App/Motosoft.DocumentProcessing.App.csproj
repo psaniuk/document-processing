@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IDocumentReaderFactory.cs" />
     <Compile Include="Contracts\IWordFilter.cs" />
     <Compile Include="Contracts\ISymbolTable.cs" />
     <Compile Include="Contracts\IWordFormatter.cs" />
@@ -56,7 +55,7 @@
     <Compile Include="Model\SymbolTable\TernarySearchTrie.cs" />
     <Compile Include="Model\SymbolTable\TernarySearchTrie.Node.cs" />
     <Compile Include="Services\DocumentReader.cs" />
-    <Compile Include="Services\DocumentReaderFactory.cs" />
+    <Compile Include="Services\Filters\FilterBase.cs" />
     <Compile Include="Services\Filters\NumberFilter.cs" />
     <Compile Include="Services\Formatters\CaseInsensitiveFormatter.cs" />
     <Compile Include="View\ConsoleView.cs" />

@@ -61,7 +61,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="CaseInsensitiveFormatterTests.cs" />
     <Compile Include="DocumentReaderTests.cs" />
+    <Compile Include="NumberFilterTests.cs" />
     <Compile Include="TernarySearchTrieTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

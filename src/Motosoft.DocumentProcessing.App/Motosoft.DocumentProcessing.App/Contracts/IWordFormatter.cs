@@ -2,6 +2,6 @@
 {
     public interface IWordFormatter
     {
-        string Apply(string word);
+        string ApplyFormat(string word);
     }
 }

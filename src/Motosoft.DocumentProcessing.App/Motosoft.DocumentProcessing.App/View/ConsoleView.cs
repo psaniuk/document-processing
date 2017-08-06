@@ -1,17 +1,20 @@
 ﻿using System;
 using Motosoft.DocumentProcessing.App.Contracts;
+using Motosoft.DocumentProcessing.App.Model;
 
 namespace Motosoft.DocumentProcessing.App.View
 {
     public class ConsoleView : IView
     {
-        public void Show(string[] words)
+        public void Show(WordCounterPair pair)
         {
-            if (words == null)
-                return;
+            if (pair != null)   
+                Console.WriteLine($"{pair.Word}: {pair.Counter}");
+        }
 
-            foreach (string stringLine in words)
-                Console.WriteLine(stringLine);    
+        public void Show(string str)
+        {
+            Console.WriteLine(str);
         }
     }
 }

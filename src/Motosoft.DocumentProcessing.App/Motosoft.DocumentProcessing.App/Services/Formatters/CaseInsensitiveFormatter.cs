@@ -4,7 +4,7 @@ namespace Motosoft.DocumentProcessing.App.Services.Formatters
 {
     public class CaseInsensitiveFormatter: IWordFormatter
     {
-        public string Apply(string word)
+        public string ApplyFormat(string word)
         {
             return word?.ToLowerInvariant() ?? string.Empty;
         }
