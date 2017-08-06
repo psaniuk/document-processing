@@ -1,4 +1,4 @@
-﻿namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
+﻿namespace Motosoft.DocumentProcessing.App.Model.Dictionary
 {
     public partial class TernarySearchTrie
     {

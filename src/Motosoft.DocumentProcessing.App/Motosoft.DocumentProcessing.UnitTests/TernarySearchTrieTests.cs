@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Motosoft.DocumentProcessing.App.Model;
-using Motosoft.DocumentProcessing.App.Model.SymbolTable;
+using Motosoft.DocumentProcessing.App.Model.Dictionary;
 using Xunit;
 
 namespace Motosoft.DocumentProcessing.UnitTests

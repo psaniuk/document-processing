@@ -1,7 +1,7 @@
 ﻿using System;
 using Motosoft.DocumentProcessing.App.Contracts;
 using Motosoft.DocumentProcessing.App.Exceptions;
-using Motosoft.DocumentProcessing.App.Model.SymbolTable;
+using Motosoft.DocumentProcessing.App.Model.Dictionary;
 using Motosoft.DocumentProcessing.App.Services;
 using Motosoft.DocumentProcessing.App.Services.Filters;
 using Motosoft.DocumentProcessing.App.Services.Formatters;

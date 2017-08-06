@@ -53,9 +53,9 @@
     <Compile Include="Model\WordCounterPair.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\SymbolTable\TernarySearchTrie.Buffer.cs" />
-    <Compile Include="Model\SymbolTable\TernarySearchTrie.cs" />
-    <Compile Include="Model\SymbolTable\TernarySearchTrie.Node.cs" />
+    <Compile Include="Model\Dictionary\TernarySearchTrie.Buffer.cs" />
+    <Compile Include="Model\Dictionary\TernarySearchTrie.cs" />
+    <Compile Include="Model\Dictionary\TernarySearchTrie.Node.cs" />
     <Compile Include="Services\DocumentReader.cs" />
     <Compile Include="Services\Filters\FilterBase.cs" />
     <Compile Include="Services\Filters\NumberFilter.cs" />

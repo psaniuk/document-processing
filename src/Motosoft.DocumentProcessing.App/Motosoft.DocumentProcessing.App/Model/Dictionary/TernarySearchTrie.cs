@@ -2,7 +2,7 @@
 using System.Text;
 using Motosoft.DocumentProcessing.App.Contracts;
 
-namespace Motosoft.DocumentProcessing.App.Model.SymbolTable
+namespace Motosoft.DocumentProcessing.App.Model.Dictionary
 {
     public partial class TernarySearchTrie: IDocumentDictionary
     {
