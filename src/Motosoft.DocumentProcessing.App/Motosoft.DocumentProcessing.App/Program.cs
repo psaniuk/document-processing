@@ -17,6 +17,8 @@ namespace Motosoft.DocumentProcessing.App
             {
                 CountIt countIt = CreateDocProcessor();
                 countIt.Count("The big brown fox number 4 jumped over the lazy dog. THE BIG BROWN FOX JUMPED OVER THE LAZY DOG. The Big Brown Fox 123.");
+        
+               // countIt.Count("These containers could be loaded onto a locomotive, container ship, or tractor trailer truck, and would consist of a maintenance car equipped with extra batteries, a robotic arm, and a computer system that would allow the vehicles to communicate with a drone. If needed, they could move to a new location to pick up a drone.");
             }
             catch (DocumentCountException exception)
             {
@@ -32,7 +34,8 @@ namespace Motosoft.DocumentProcessing.App
         {
             var filter = new IWordFilter[] {new NumberFilter()};
             var formatters = new IWordFormatter[] {new CaseInsensitiveFormatter()};
-            return new CountIt(new DocumentReader(), new TernarySearchTrie(), new ConsoleView(), filter, formatters);
+            return new CountIt(new DocumentReader(), new TernarySearchTrie(), new ConsoleView(), 
+                new WordEncoder(), filter, formatters);
         }
     }
 }
