@@ -15,8 +15,8 @@ namespace Motosoft.DocumentProcessing.App.Services
         private readonly IWordFilter[] _filters;
         private readonly IWordFormatter[] _formatters;
 
-        public CountIt(IDocumentReader documentReader, IDocumentDictionary documentDictionary, IView userView, IWordEncoder wordEncoder,
-            IWordFilter[] filters, IWordFormatter[] formatters)
+        public CountIt(IDocumentReader documentReader, IDocumentDictionary documentDictionary, 
+            IView userView, IWordEncoder wordEncoder,IWordFilter[] filters, IWordFormatter[] formatters)
         {
             _documentReader = documentReader;
             _documentDictionary = documentDictionary;

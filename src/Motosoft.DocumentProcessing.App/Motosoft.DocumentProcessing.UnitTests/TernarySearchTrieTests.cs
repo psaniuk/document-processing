@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Motosoft.DocumentProcessing.App.Model;
 using Motosoft.DocumentProcessing.App.Model.Dictionary;
 using Xunit;
@@ -29,7 +30,7 @@ namespace Motosoft.DocumentProcessing.UnitTests
             var trie = new TernarySearchTrie();
             trie.Put("orange");
             trie.Put("orange");
-            
+
             Assert.Equal(2, trie.CountWord("orange"));
         }
 
@@ -135,6 +136,59 @@ namespace Motosoft.DocumentProcessing.UnitTests
 
             var pairs = trie.GetAll();
             Assert.Equal(23, pairs.Sum(p => p.Counter));
+        }
+
+        [Fact]
+        public void put_abc_aak_assume_count_abc_equals_1_aak_equals_1()
+        {
+            var trie = new TernarySearchTrie();
+            trie.Put("abc");
+            trie.Put("aak");
+
+            Assert.Equal(1, trie.CountWord("abc"));
+            Assert.Equal(1, trie.CountWord("aak"));
+        }
+
+        [Fact]
+        public void put_orange_peach_execute_getAll_assume_first_item_is_orange_second_is_peach()
+        {
+            var trie = new TernarySearchTrie();
+            trie.Put("orange");
+            trie.Put("peach");
+
+            WordCounterPair[] result = trie.GetAll();
+            Assert.Equal("orange", result.First().Word);
+            Assert.Equal("peach", result.Last().Word);
+        }
+
+        [Fact]
+        public void edge_case_1()
+        {
+            var trie = new TernarySearchTrie();
+            trie.Put("these");
+            trie.Put("containers");
+            trie.Put("could");
+            trie.Put("car");
+            trie.Put("computer");
+            trie.Put("communicate");
+
+            WordCounterPair[] result = trie.GetAll();
+        }
+
+        [Fact]
+        public void edge_case_2()
+        {
+            var trie = new TernarySearchTrie();
+
+            trie.Put("containers");
+            trie.Put("could");
+            trie.Put("container");
+            trie.Put("consist");
+            trie.Put("computer");
+            trie.Put("communicate");
+            trie.Put("could");
+           
+            WordCounterPair[] result = trie.GetAll();
         }
     }
 }

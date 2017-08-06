@@ -60,17 +60,11 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
             if ((buffer.Index == DistinctCount) || (node == null))
                 return;
 
-            if (node.Counter > 0)
-            {
-                wordBuilder.Append(node.Symbol);
-                buffer.Add(wordBuilder.ToString(), node.Counter);
-            }
-
             if (node.Left != null)
             {
                 if (node == _root)
                     wordBuilder.Clear();
-
+            
                 GetAll(node.Left, buffer, new StringBuilder(wordBuilder.ToString()));
             }
 
@@ -80,16 +74,27 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
                 wordBuilder.Append(node.Symbol);
                 GetAll(node.Middle, buffer, wordBuilder);
 
-                if (wordBuilder.Length > 0)
-                    wordBuilder.Remove(wordBuilder.Length - 1, 1);
+               /* if (wordBuilder.Length > 0)
+                    wordBuilder.Remove(wordBuilder.Length - 1, 1);*/
             }
 
             if (node.Right != null)
             {
                 if (node == _root)
                     wordBuilder.Clear();
+                else
+                {
+                    if (wordBuilder.Length > 0)
+                        wordBuilder.Remove(wordBuilder.Length - 1, 1);
+                }
 
                 GetAll(node.Right, buffer, new StringBuilder(wordBuilder.ToString()));
+            }
+
+            if (node.Counter > 0)
+            {
+                wordBuilder.Append(node.Symbol);
+                buffer.Add(wordBuilder.ToString(), node.Counter);
             }
 
             if (wordBuilder.Length > 0)
