@@ -4,10 +4,10 @@ using Motosoft.DocumentProcessing.App.Contracts;
 
 namespace Motosoft.DocumentProcessing.App.Model.Dictionary
 {
-    public partial class TernarySearchTrie: IDocumentDictionary
+    public partial class TernarySearchTrie : IDocumentDictionary
     {
         private Node _root;
-        
+
         public void Put(string word)
         {
             if (string.IsNullOrWhiteSpace(word))
@@ -29,11 +29,37 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
             return buffer.Items;
         }
 
+        public int CountWord(string word)
+        {
+            if (string.IsNullOrWhiteSpace(word))
+                throw new ArgumentNullException();
+
+            if (_root == null)
+                return 0;
+
+            Node node = Get(_root, word, 0);
+            return node?.Counter ?? 0;
+        }
+
+        private Node Get(Node node, string word, int index)
+        {
+            if ((index == word.Length - 1) || (node == null))
+                return node;
+
+            if (word[index] > node.Symbol)
+                return Get(node.Right, word, index);
+
+            if (word[index] < node.Symbol)
+                return Get(node.Left, word, index);
+
+            return Get(node.Middle, word, ++index);
+        }
+
         private void GetAll(Node node, TrieBuffer buffer, StringBuilder wordBuilder)
         {
-            if (buffer.Index == DistinctCount || node == null)
+            if ((buffer.Index == DistinctCount) || (node == null))
                 return;
-            
+
             if (node.Counter > 0)
             {
                 wordBuilder.Append(node.Symbol);
@@ -47,14 +73,14 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
 
                 GetAll(node.Left, buffer, new StringBuilder(wordBuilder.ToString()));
             }
-            
+
 
             if (node.Middle != null)
             {
                 wordBuilder.Append(node.Symbol);
                 GetAll(node.Middle, buffer, wordBuilder);
 
-               if (wordBuilder.Length > 0)
+                if (wordBuilder.Length > 0)
                     wordBuilder.Remove(wordBuilder.Length - 1, 1);
             }
 
@@ -70,32 +96,6 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
                 wordBuilder.Remove(wordBuilder.Length - 1, 1);
         }
 
-        public int CountWord(string word)
-        {
-            if (string.IsNullOrWhiteSpace(word))
-                throw new ArgumentNullException();
-
-            if (_root == null)
-                return 0;
-
-            Node node = Get(_root, word, 0);
-            return node?.Counter ?? 0;
-        }
-
-        private Node Get(Node node, string word, int index)
-        {
-            if (index == word.Length - 1 || node == null)
-                return node;
-
-            if (word[index] > node.Symbol)
-                return Get(node.Right, word, index);
-
-            if (word[index] < node.Symbol)
-                return Get(node.Left, word, index);
-
-            return Get(node.Middle, word, ++index);
-        }
-
         private Node Put(Node node, string word, int index)
         {
             if (node == null)
@@ -105,7 +105,7 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
             {
                 if (word[index] > node.Symbol)
                     node.Right = Put(node.Right, word, index);
-                else if (word[index] <node.Symbol)
+                else if (word[index] < node.Symbol)
                     node.Left = Put(node.Left, word, index);
                 else
                     node.Middle = Put(node.Middle, word, ++index);
