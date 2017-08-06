@@ -42,13 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDocumentReaderFactory.cs" />
+    <Compile Include="Contracts\IWordFilter.cs" />
     <Compile Include="Contracts\ISymbolTable.cs" />
+    <Compile Include="Contracts\IWordFormatter.cs" />
+    <Compile Include="Services\CountIt.cs" />
+    <Compile Include="Contracts\IDocumentReader.cs" />
+    <Compile Include="Contracts\IView.cs" />
     <Compile Include="Model\WordCounterPair.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\SymbolTable\TernarySearchTrie.Buffer.cs" />
     <Compile Include="Model\SymbolTable\TernarySearchTrie.cs" />
     <Compile Include="Model\SymbolTable\TernarySearchTrie.Node.cs" />
+    <Compile Include="Services\DocumentReader.cs" />
+    <Compile Include="Services\DocumentReaderFactory.cs" />
+    <Compile Include="Services\Filters\NumberFilter.cs" />
+    <Compile Include="Services\Formatters\CaseInsensitiveFormatter.cs" />
+    <Compile Include="View\ConsoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
