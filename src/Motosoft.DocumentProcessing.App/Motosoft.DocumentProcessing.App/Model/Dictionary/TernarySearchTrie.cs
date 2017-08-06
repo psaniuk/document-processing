@@ -73,9 +73,6 @@ namespace Motosoft.DocumentProcessing.App.Model.Dictionary
             {
                 wordBuilder.Append(node.Symbol);
                 GetAll(node.Middle, buffer, wordBuilder);
-
-               /* if (wordBuilder.Length > 0)
-                    wordBuilder.Remove(wordBuilder.Length - 1, 1);*/
             }
 
             if (node.Right != null)
